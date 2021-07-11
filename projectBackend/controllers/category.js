@@ -52,3 +52,7 @@ exports.getAllCategory = (req, res) => {
         res.json({categories})
     }) 
 }
+
+exports.updateCategory = (req, res) => {
+    
+}
