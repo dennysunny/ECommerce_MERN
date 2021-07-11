@@ -1,0 +1,45 @@
+# jsonwebtoken
+--------------
+* https://www.npmjs.com/package/jsonwebtoken
+  -Synchronous Sign with default (HMAC SHA256)
+
+    var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+    we can create a long string that can be based on a key - value pair;
+
+    here we can 
+            provide email of the user
+            also id of the user from the db etc...
+    to create the token
+
+    shhhh - random long string,  can be anything here literly , based on this, itll create a token , here we store this secret key in env
+
+
+# express-jwt
+-------------
+* https://www.npmjs.com/package/express-jwt
+
+    -to check whether the user is authenticated or not
+    -provides Express middleware for validating JWTs (JSON Web Tokens) through the jsonwebtoken module
+    jwt({
+      secret: 'shhhhhhared-secret',
+      audience: 'http://myapi/protected',
+      issuer: 'http://issuer'
+    })
+
+     {
+    "_id": "60e9a189982b962f905ff111",
+    "iat": 1625936838
+    }
+
+    here _id is matched with the token to validate authentication
+
+#jwt
+----
+* https://jwt.io/introduction
+  - How do JSON Web Tokens work?
+    Bearer is the one who accecpts the token
+    to protect some routes
+    signed in -> in fb , u need to be signed in to see profile details of peoples
+    authenticated -> to perform some actions, like we can change dp of our profile, but cannot our friend's, 
+
+    
