@@ -23,7 +23,7 @@ exports.createCategory = (req, res) => {
     category.save((err, category) => {
 
         if(err){
-            return res.staus(400).json({
+            return res.status(400).json({
                 error : "Not able to save Category in DB"
             })
         }
@@ -44,7 +44,7 @@ exports.getAllCategory = (req, res) => {
     Category.find().exec((err, categories) => {
 
         if(err){
-            return res.staus(400).json({
+            return res.status(400).json({
                 error : "No Categories found in DB"
             })
         }
@@ -54,5 +54,38 @@ exports.getAllCategory = (req, res) => {
 }
 
 exports.updateCategory = (req, res) => {
+
+    const category = req.category
+    category.name = req.body.name
+
+    category.save((err, updatedCategory) => { //category is a db obj, so we can directy use save()
+
+        if(err){
+            return res.status(400).json({
+                error : "Failed to update category "
+            })
+        }
+
+        res.json(updatedCategory);
+
+    })
     
+}
+
+exports.removeCategory = (req, res) => {
+
+    const category = req.category
+    
+    category.remove((err, category) => {
+
+        if(err){
+            return res.status(400).json({
+                error : "Failed to delete category "
+            })
+        }
+
+        res.json({
+            message : ` ${category.name} Deleted Successfully `
+        });
+    })
 }
