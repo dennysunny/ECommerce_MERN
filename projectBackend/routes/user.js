@@ -2,7 +2,12 @@ const express = require("express")
 const router = express.Router()
 
 const { isSignedIn, isAuthenticated } = require("../controllers/auth")
-const {getUserById, getUser, updateUser, userPurchaseList} = require("../controllers/user")
+const {
+    getUserById,
+    getUser,
+    updateUser,
+    userPurchaseList
+} = require("../controllers/user")
 
 //http://expressjs.com/en/5x/api.html#router.param
 router.param("userId", getUserById)

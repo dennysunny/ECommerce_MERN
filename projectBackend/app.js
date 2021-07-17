@@ -11,6 +11,8 @@ const cors          = require("cors")
 const authRoutes    = require("./routes/auth")
 const userRoutes    = require("./routes/user")
 const CategoryRoutes    = require("./routes/category")
+const ProductRoutes    = require("./routes/product")
+
 
 /* if you specify useNewUrlParser: true, you must specify a port in  connection string, 
 like mongodb://localhost:27017/dbname. new url parser does not support connection strings that do not have a port, like mongodb://localhost/dbname.*/
@@ -36,6 +38,8 @@ app.use(cors())
 app.use("/api", authRoutes);
 app.use("/api", userRoutes)
 app.use("/api", CategoryRoutes)
+app.use("/api", ProductRoutes)
+
 
 
 const port =process.env.PORT || 8000;  //dotenv

@@ -24,15 +24,15 @@ exports.signup =  (req, res) => {
       return res.status(400).json({
         message : "Not able to save user in DB",
         //error : err.errmsg,
-        error: err.message
+        //error: err.message
       })
     }
 
     //send back saved user from db
     res.json({
-      name: user.name,
-      email: user.email,
-      id: user._id
+      name: data.name,
+      email: data.email,
+      id: data._id
     }) 
   });
   
