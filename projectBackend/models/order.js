@@ -31,30 +31,38 @@ const ProductCart = mongoose.model("ProductCart", productCartSchema)
 
 
 
-const orderSchema = new mongoose.Schema({
-
+const orderSchema = new mongoose.Schema(
+  {
     //products that is in the cart
     products: [productCartSchema],
     transaction_id: {},
 
     amount: {
-        type: Number
+      type: Number,
     },
 
     address: {
-        type: String,
-        maxlength: 2000
+      type: String,
+      maxlength: 2000,
+    },
+
+    status: {
+      type: String,
+      default: "Received",
+      enum: ["Processing", "Shipped", "Delivered", "Cancelled", "Received"],
     },
 
     updated: {
-        type: Date
+      type: Date,
     },
 
     user: {
-        type: ObjectId,
-        ref: "User"
-    }
-}, {timestamps: true} )
+      type: ObjectId,
+      ref: "User",
+    },
+  },
+  { timestamps: true }
+);
 
 
 const Order = mongoose.model("Order", orderSchema)

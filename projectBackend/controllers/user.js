@@ -56,6 +56,7 @@ exports.userPurchaseList = (req, res) => {
 
     //order schema has ref of user
     Order.find({user: req.profile._id})
+    //which field u want to populate, information u want to grab
     .populate("user", "_id name")
     .exec((err, order) => {
 
@@ -70,7 +71,7 @@ exports.userPurchaseList = (req, res) => {
 }
 
 //user model
-//middleware
+//M I D D L E W A R E 
 exports.pushOrderInPurchaseList = (req, res, next) => {
 
     let purchases = [];

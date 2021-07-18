@@ -12,6 +12,7 @@ const authRoutes    = require("./routes/auth")
 const userRoutes    = require("./routes/user")
 const CategoryRoutes    = require("./routes/category")
 const ProductRoutes    = require("./routes/product")
+const OrderRoutes    = require("./routes/order")
 
 
 /* if you specify useNewUrlParser: true, you must specify a port in  connection string, 
@@ -39,6 +40,7 @@ app.use("/api", authRoutes);
 app.use("/api", userRoutes)
 app.use("/api", CategoryRoutes)
 app.use("/api", ProductRoutes)
+app.use("/api", OrderRoutes)
 
 
 

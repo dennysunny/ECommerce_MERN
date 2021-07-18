@@ -205,28 +205,25 @@ exports.getAllUniqueCategories = (req, res) => {
 }
 
 exports.updateStock = (req, res, next) => {
+  //bulkwrite : https://mongoosejs.com/docs/api/model.html#model_Model.bulkWrite
+  //here, order will have the product added to the cart
+  let myOperations = req.body.order.product.map((prod) => {
+    return {
+      updateOne: {
+        filter: { _id: prod._id }, //find the product 1st with id
+        update: { $inc: { stock: -prod.count, sold: +prod.count } }, //$inc - incriment - syntax is like that
+      },
+    };
+  });
 
-    //bulkwrite : https://mongoosejs.com/docs/api/model.html#model_Model.bulkWrite
-    //here, order will have the product added to the cart
-    let myOperations = req.body.order.product.map(prod => {
-
-        return {
-            updateOne: {
-                filter : {_id : prod._id}, //find the product 1st with id
-                update : {$inc: {stock : -prod.count ,sold : +prod.count}} //$inc - incriment - syntax is like that
-              }
-        }
-    })
-
-    //parameters, options, callback
-    Product.bulkWrite(myOperations, {}, (err, products) => {
-
-        if(err) {
-            return res.status(400).json({
-                error : "Bulk Operation Failed"
-            })
-        }
-        next();
-    })
-}
+  //parameters, options, callback
+  Product.bulkWrite(myOperations, {}, (err, products) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Bulk Operation Failed",
+      });
+    }
+    next();
+  });
+};
 
